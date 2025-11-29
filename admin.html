@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="id">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin - RIKY</title>
+<link rel="stylesheet" href="style.css"></head>
+<body>
+  <div class="container">
+    <div id="loginWrap" class="login-box admin-area">
+      <h3>Admin Login</h3>
+      <input id="pass" class="input" type="password" placeholder="Password admin">
+      <button class="btn" id="loginBtn">Login</button>
+      <div id="loginMsg" class="hint"></div>
+    </div>
+
+    <div id="adminWrap" class="hidden">
+      <h2>Admin Panel</h2>
+
+      <section class="admin-area">
+        <h3>Tambah / Edit Produk</h3>
+        <div class="form-row">
+          <input id="pId" class="input" placeholder="ID (unique)">
+          <input id="pName" class="input" placeholder="Nama produk">
+        </div>
+        <div class="form-row">
+          <input id="pPrice" class="input" type="number" placeholder="Harga">
+          <input id="pQRIS" class="input" placeholder="QRIS image URL (opsional)">
+        </div>
+        <div>
+          <input id="pImgFile" type="file" accept="image/*">
+          <div id="imgPreview" class="hint"></div>
+        </div>
+        <textarea id="pDesc" placeholder="Deskripsi..." class="input"></textarea>
+        <div class="row">
+          <button class="btn" id="addProdBtn">Tambah / Simpan</button>
+          <button class="btn" id="clearFormBtn" style="background:#6b7280">Bersihkan</button>
+        </div>
+
+        <h4 style="margin-top:16px">Daftar Produk</h4>
+        <table class="table" id="prodTable"><thead><tr><th>ID</th><th>Nama</th><th>Harga</th><th>Aksi</th></tr></thead><tbody></tbody></table>
+      </section>
+
+      <section class="admin-area" style="margin-top:12px">
+        <h3>Voucher</h3>
+        <div class="form-row">
+          <input id="vCode" class="input" placeholder="Kode">
+          <input id="vType" class="input" placeholder="type (percent|nominal)">
+        </div>
+        <div class="form-row">
+          <input id="vValue" class="input" placeholder="value (e.g. 10 atau 50000)">
+          <input id="vMin" class="input" placeholder="min amount (optional)">
+        </div>
+        <div class="row">
+          <button class="btn" id="addVoucherBtn">Tambah Voucher</button>
+          <button class="btn" id="exportJsonBtn" style="background:#10b981">Export JSON</button>
+          <button class="btn" id="saveGithubBtn" style="background:#ef4444">Simpan ke GitHub (via server)</button>
+        </div>
+
+        <h4 style="margin-top:12px">Voucher Aktif</h4>
+        <table class="table" id="vTable"><thead><tr><th>Code</th><th>Type</th><th>Value</th><th>Aksi</th></tr></thead><tbody></tbody></table>
+      </section>
+
+      <section class="admin-area" style="margin-top:12px">
+        <h3>Dashboard Transaksi</h3>
+        <div class="hint">Transaksi disimpan lokal (localStorage) atau di GitHub jika Anda simpan via server</div>
+        <div style="margin-top:8px">
+          <button class="btn" id="loadPurchasesBtn">Muat Transaksi</button>
+          <button class="btn" id="exportPurchasesBtn" style="background:#10b981">Export Purchases</button>
+        </div>
+        <table class="table" id="tTable"><thead><tr><th>ID</th><th>Buyer</th><th>Total</th><th>Tanggal</th><th>Aksi</th></tr></thead><tbody></tbody></table>
+      </section>
+    </div>
+
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

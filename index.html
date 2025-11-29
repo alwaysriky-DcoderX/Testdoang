@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Toko Digital - RIKY</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">RIKY STORE</div>
+      <div class="row">
+        <button class="btn small" id="openCartBtn">Keranjang (<span id="cartCount">0</span>)</button>
+        <button class="btn small" id="openAdminBtn">Admin</button>
+      </div>
+    </header>
+
+    <section>
+      <div class="row" style="align-items:center;justify-content:space-between">
+        <h2 style="margin:0">Produk Kami</h2>
+        <div class="hint">Data dibaca dari <span id="rawNote" class="badge">local</span></div>
+      </div>
+
+      <div id="productGrid" class="grid"></div>
+
+      <div style="margin-top:18px">
+        <input id="voucherInput" class="input" placeholder="Masukkan voucher (contoh: RIKY10)" style="max-width:320px;display:inline-block">
+        <button class="btn small" onclick="applyVoucher()">Gunakan Voucher</button>
+        <span id="voucherMsg" class="hint" style="margin-left:12px"></span>
+      </div>
+    </section>
+
+    <div class="footer">Deploy: Vercel / Static + optional Node backend for GitHub commits</div>
+  </div>
+
+  <!-- CART / CHECKOUT MODAL -->
+  <div id="cartModal" class="modal">
+    <div class="modal-box">
+      <h3>Keranjang</h3>
+      <div id="cartList"></div>
+      <div style="margin-top:12px" class="row">
+        <div style="flex:1"><b>Total:</b> <span id="cartTotal">Rp 0</span></div>
+        <div style="width:220px">
+          <input id="buyerName" class="input" placeholder="Nama lengkap">
+          <input id="buyerEmail" class="input" placeholder="Email">
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="btn" onclick="startPayment()">Bayar (QRIS)</button>
+            <button class="btn" onclick="whatsappCheckout()">WhatsApp</button>
+          </div>
+          <div style="margin-top:8px">
+            <input id="uploadProof" type="file" accept="image/*">
+            <div id="uploadPreview" style="margin-top:8px"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:12px" class="row" >
+        <button class="btn" onclick="closeCart()">Tutup</button>
+        <button class="btn" style="background:#6b7280" onclick="clearCart()">Bersihkan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QRIS modal -->
+  <div id="qrisModal" class="modal"><div class="modal-box">
+    <h3>Scan QRIS untuk transfer</h3>
+    <img id="qrisImg" src="" style="width:100%;max-width:320px;border-radius:10px">
+    <div class="hint" style="margin-top:8px">Setelah transfer, tekan "Selesai" lalu upload bukti.</div>
+    <div style="margin-top:12px" class="row">
+      <button class="btn" onclick="confirmTransfer()">Selesai</button>
+      <button class="btn" style="background:#6b7280" onclick="closeQris()">Tutup</button>
+    </div>
+  </div></div>
+
+  <script src="main.js"></script>
+</body>
+</html>
